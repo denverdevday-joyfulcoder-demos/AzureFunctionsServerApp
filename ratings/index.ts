@@ -5,8 +5,12 @@ const ratings: AzureFunction = async function (context: Context, req: HttpReques
     let rating = '';
     let score = +req.query.score;
 
-    if (isNaN(score) && req.body) {
-        score = +req.body.score;
+    if (isNaN(score) && req.body && req.body.scores && req.body.scores.length) {
+        let total = 0;
+        (<Array<number>>req.body.scores).forEach(item => {
+            total += +item;
+        });
+        score = total / req.body.scores.length;
     }
 
     if (score >= .7) {
