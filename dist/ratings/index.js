@@ -36,7 +36,7 @@ const ratings = function (context, req) {
         else {
             context.res = {
                 status: 400,
-                body: "Please provide a numeric score between 0 and 1."
+                body: "Please provide a numeric score between 0 and 1"
             };
         }
     });
